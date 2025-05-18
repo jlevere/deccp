@@ -24,7 +24,7 @@ Install the project and its dependencies in editable mode:
 
 ```sh
 uv venv
-uv pip install -e .
+uv sync
 ```
 
 ## Development Environment (Nix Flakes)
