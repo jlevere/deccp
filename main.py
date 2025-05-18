@@ -6,6 +6,7 @@ Saves intermediate .pyj and decompressed_output files for debugging.
 """
 
 import argparse
+import json
 import logging
 import zipfile
 import zlib
@@ -134,6 +135,7 @@ def main():
         return
 
     logger.info(f"Processing {len(work)} files with {args.jobs} workers...")
+    errors = {}
     with ProcessPoolExecutor(max_workers=args.jobs) as executor:
         future_to_member = {executor.submit(process_pyj_member, w): w[0] for w in work}
         for future in as_completed(future_to_member):
@@ -143,12 +145,22 @@ def main():
                 member, source, error = future.result()
                 if error:
                     logger.error(f"Error: {member}: {error}")
+                    errors[member] = error
                 else:
                     out_path.parent.mkdir(parents=True, exist_ok=True)
                     out_path.write_text(source, encoding="utf-8")
                     logger.info(f"Decompiled: {out_path.relative_to(output_base_dir)}")
             except Exception as e:
                 logger.error(f"Error: {member_name_in_zip}: {e}")
+                errors[member_name_in_zip] = str(e)
+
+    if errors:
+        errors_path = output_base_dir / "decompile_errors.json"
+        with open(errors_path, "w", encoding="utf-8") as f:
+            json.dump(errors, f, indent=2, ensure_ascii=False)
+        logger.info(
+            f"Wrote errors to {errors_path.relative_to(output_base_dir)} ({len(errors)} files)"
+        )
 
 
 if __name__ == "__main__":
