@@ -80,7 +80,8 @@ def decompile_pyj_blob(
 
 def process_pyj_member(args: Tuple[str, bytes]) -> Tuple[str, str, str]:
     """
-    Decompile a single .pyj member. Returns (member_name_in_zip, decompiled_source_code, error_message).
+    Decompile a single .pyj member. Returns (member_name_in_zip,
+    decompiled_source_code, error_message).
     Only one of decompiled_source_code or error_message will be non-empty.
     """
     member_name_in_zip, raw_pyj_blob_from_zip = args
@@ -160,9 +161,7 @@ def main():
         errors_path = output_base_dir / "decompile_errors.json"
         with open(errors_path, "w", encoding="utf-8") as f:
             json.dump(errors, f, indent=2, ensure_ascii=False)
-        logger.info(
-            f"Wrote errors to {errors_path.relative_to(output_base_dir)} ({len(errors)} files)"
-        )
+        logger.info(f"Wrote errors to {errors_path.relative_to(output_base_dir)}")
 
 
 if __name__ == "__main__":
