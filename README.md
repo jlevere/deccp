@@ -6,6 +6,15 @@ Extract and decompile `code.ccp` into a clean Python source tree.
 
 This tool takes a CCP game client's `code.ccp` archive (a ZIP of `.pyj` blobs), decompresses and decompiles the bytecode, and writes out the resulting Python source files.
 
+## Quick Start
+
+```sh
+uvx tool install git+https://github.com/jlevere/deccp.git
+uvx deccp --help
+```
+
+`uvx tool install` will clone the Git repo into your local cache and build it for use, no PyPI needed.
+
 ## Features
 
 - Decompresses `.pyj` blobs from a `code.ccp` archive
