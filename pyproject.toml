@@ -33,6 +33,7 @@ convention = "google"
 
 [dependency-groups]
 dev = [
+    "ruff>=0.11.10",
     "ty>=0.0.1a5",
 ]
 
