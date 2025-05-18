@@ -1,5 +1,5 @@
 [project]
-name = "code-ccp-extractor"
+name = "deccp"
 version = "0.1.0"
 description = "Extract and decompile code.ccp into a clean Python source tree."
 readme = "README.md"
@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
-code-ccp-extractor = "code_ccp_extractor.main:main"
+deccp = "deccp.main:main"
 
 
 [tool.ruff.lint]

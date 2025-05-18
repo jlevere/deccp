@@ -18,7 +18,7 @@ from typing import List, Tuple
 import xdis
 from uncompyle6.main import decompile as uncompyle6_decompile
 
-logger = logging.getLogger("ccp-extractor")
+logger = logging.getLogger("deccp")
 if not logger.hasHandlers():
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
@@ -94,7 +94,9 @@ def process_pyj_member(args: Tuple[str, bytes]) -> Tuple[str, str, str]:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Extract & decompile code.ccp.")
+    parser = argparse.ArgumentParser(
+        description="Extract & decompile code.ccp (de-ccp)."
+    )
     parser.add_argument(
         "zipfile", type=Path, help="Path to code.ccp (a ZIP of .pyj blobs)"
     )
