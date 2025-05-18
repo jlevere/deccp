@@ -3,6 +3,10 @@ name = "deccp"
 version = "0.1.0"
 description = "Extract and decompile code.ccp into a clean Python source tree."
 readme = "README.md"
+authors = [
+    { name = "jLevere", email = "71566629+jLevere@users.noreply.github.com" }
+]
+
 requires-python = ">=3.11"
 dependencies = [
     "uncompyle6>=3.9.2",
@@ -31,3 +35,7 @@ convention = "google"
 dev = [
     "ty>=0.0.1a5",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
